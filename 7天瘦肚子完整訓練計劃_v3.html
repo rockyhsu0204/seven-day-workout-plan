@@ -1,0 +1,1736 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7天瘦肚子完整訓練計劃</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f4ed;
+      --ink: #1f2a24;
+      --muted: #55635b;
+      --card: #ffffff;
+      --accent: #0f766e;
+      --accent-soft: #d6f3ef;
+      --warn: #b45309;
+      --line: #d9e2dc;
+      --shadow: 0 12px 30px rgba(31, 42, 36, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% -5%, #d5efe9 0%, transparent 30%),
+        radial-gradient(circle at 90% 0%, #f9e6d0 0%, transparent 25%),
+        var(--bg);
+      min-height: 100vh;
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 16px 44px;
+    }
+
+    .hero {
+      background: linear-gradient(130deg, #ffffff, #f1f8f3 46%, #eef9f6 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .goal {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.92rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    #timerPanel,
+    #contentPanel,
+    .day-card,
+    #nightPage,
+    #tipsSection {
+      scroll-margin-top: 78px;
+    }
+
+    .quick-nav {
+      margin-top: 14px;
+    }
+
+    .quick-nav-scroller {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 6px;
+      scrollbar-width: none;
+    }
+
+    .quick-nav-scroller::-webkit-scrollbar {
+      display: none;
+    }
+
+    .quick-nav-btn {
+      flex: 0 0 auto;
+      border: 1px solid #d2dfd7;
+      background: rgba(255, 255, 255, 0.92);
+      color: #244236;
+      box-shadow: 0 6px 18px rgba(31, 42, 36, 0.08);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .timer-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      border: 1px solid #c9d7cd;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 0.98rem;
+      font-family: inherit;
+    }
+
+    .timer-display {
+      margin-top: 14px;
+      border-radius: 14px;
+      background: #f7fbf9;
+      border: 1px solid #d2e8df;
+      padding: 14px;
+    }
+
+    #timerName {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    #timerStage {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    #clock {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.1rem, 8vw, 3rem);
+      margin: 8px 0 2px;
+      letter-spacing: 0.03em;
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: #d7eee5;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #14b8a6, #0f766e);
+      transition: width 0.2s linear;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 9px 12px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-main {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-sub {
+      background: #e7efe9;
+      color: #2f4336;
+    }
+
+    .btn-warn {
+      background: #fff1df;
+      color: var(--warn);
+    }
+
+    .days {
+      display: grid;
+      gap: 12px;
+    }
+
+    .page-switch {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .switch-btn {
+      background: #edf3ef;
+      color: #2a3e32;
+      border: 1px solid #d2dfd7;
+    }
+
+    .switch-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .content-page {
+      display: none;
+    }
+
+    .content-page.active {
+      display: block;
+      animation: fadeSlide 0.2s ease;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .day-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .day-card[open] {
+      box-shadow: 0 10px 24px rgba(31, 42, 36, 0.08);
+    }
+
+    .day-summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      background: linear-gradient(180deg, #ffffff, #f9fcfa);
+    }
+
+    .day-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .day-summary-main {
+      min-width: 0;
+    }
+
+    .day-summary-meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .day-summary-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #eef8f4;
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 800;
+      flex: 0 0 auto;
+      transition: transform 0.2s ease;
+    }
+
+    .day-card[open] .day-summary-icon {
+      transform: rotate(45deg);
+    }
+
+    .day-body {
+      padding: 0 14px 14px;
+    }
+
+    .day-title {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .exercise {
+      border-top: 1px dashed #dde7df;
+      padding-top: 8px;
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .exercise:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .exercise-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .exercise-meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .guide {
+      margin-top: 4px;
+      border: 1px solid #dce7df;
+      background: #f8fcf9;
+      border-radius: 10px;
+      padding: 6px 8px;
+    }
+
+    .guide summary {
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #244236;
+    }
+
+    .guide-body {
+      margin-top: 6px;
+      font-size: 0.86rem;
+      color: #2f4a3c;
+      line-height: 1.5;
+      display: grid;
+      gap: 10px;
+    }
+
+    .guide-media {
+      display: grid;
+      gap: 8px;
+    }
+
+    .guide-figure {
+      margin: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #d6e6dc;
+      background: linear-gradient(180deg, #fdfefe, #f4fbf7);
+    }
+
+    .guide-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .guide-caption {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #4b6658;
+      line-height: 1.45;
+    }
+
+    .guide-text {
+      white-space: pre-line;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #d6e6dc;
+      background: #f4faf6;
+      color: #355243;
+      white-space: nowrap;
+    }
+
+    .tag.time {
+      background: var(--accent-soft);
+      border-color: #99ddd3;
+      color: #0f5f58;
+    }
+
+    .night {
+      margin-top: 14px;
+      border: 1px solid #eddcc5;
+      background: #fff8ee;
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .night h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .tips {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #eff7ff;
+      border: 1px solid #d6e8fb;
+      border-radius: 14px;
+      color: #23364c;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    .small {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .mobile-timer-dock {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 50;
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-radius: 18px;
+      box-shadow: 0 18px 36px rgba(31, 42, 36, 0.18);
+      padding: 12px;
+      transform: translateY(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .mobile-timer-dock.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .mobile-timer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .mobile-timer-copy {
+      min-width: 0;
+    }
+
+    .mobile-timer-label {
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mobile-timer-name {
+      margin-top: 2px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mobile-timer-clock {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .mobile-timer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 920px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body.dock-visible {
+        padding-bottom: 100px;
+      }
+
+      .wrap {
+        padding: 16px 12px 28px;
+      }
+
+      .hero,
+      .panel,
+      .night {
+        padding: 16px;
+      }
+
+      #contentPanel {
+        order: 1;
+      }
+
+      #timerPanel {
+        order: 2;
+      }
+
+      .quick-nav {
+        position: sticky;
+        top: 10px;
+        z-index: 25;
+      }
+
+      .exercise-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn-row {
+        flex-direction: column;
+      }
+
+      .btn-row button,
+      .exercise .btn-main,
+      .switch-btn {
+        width: 100%;
+      }
+
+      .page-switch {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .day-summary {
+        padding: 13px 14px;
+      }
+
+      .mobile-timer-dock {
+        display: block;
+        bottom: max(12px, env(safe-area-inset-bottom));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero" id="heroSection">
+      <h1>7 天瘦肚子完整訓練計劃</h1>
+      <p class="subtitle">每日約 13 分鐘（白天 10 分鐘 + 睡前 3 分鐘）</p>
+      <div class="goal">
+        <span class="chip">減少腹部脂肪</span>
+        <span class="chip">改善小腹凸出</span>
+        <span class="chip">強化核心肌群</span>
+        <span class="chip">收緊腰圍線條</span>
+      </div>
+    </section>
+
+    <nav class="quick-nav" aria-label="快速導覽">
+      <div class="quick-nav-scroller" id="quickNav"></div>
+    </nav>
+
+    <section class="layout">
+      <aside class="panel" id="timerPanel">
+        <h2 class="timer-title">訓練計時器</h2>
+
+        <div class="label">休息秒數（組間）</div>
+        <input id="restSeconds" type="number" min="5" max="120" step="5" value="20" />
+
+        <div class="label" style="margin-top:10px;">自訂秒數</div>
+        <input id="customSeconds" type="number" min="5" max="600" step="5" value="30" />
+
+        <div class="label" style="margin-top:10px;">自訂組數</div>
+        <input id="customSets" type="number" min="1" max="20" step="1" value="3" />
+
+        <div class="btn-row">
+          <button class="btn-main" id="startCustom">開始自訂計時</button>
+        </div>
+
+        <div class="timer-display">
+          <div id="timerName">尚未開始</div>
+          <div id="timerStage">按下課表中的「啟動計時」或使用自訂計時</div>
+          <div id="clock">00:00</div>
+          <div class="bar"><span id="progress"></span></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-main" id="pauseResume" disabled>暫停</button>
+          <button class="btn-sub" id="skipStage" disabled>跳過階段</button>
+          <button class="btn-warn" id="resetTimer" disabled>重設</button>
+        </div>
+
+        <p class="small">流程：工作倒數 → 休息倒數（最後一組不休息）→ 完成提示。</p>
+      </aside>
+
+      <section class="panel" id="contentPanel">
+        <h2 class="timer-title">訓練內容</h2>
+        <div class="page-switch">
+          <button id="showDaily" class="switch-btn active" type="button">每日課表</button>
+          <button id="showNight" class="switch-btn" type="button">睡前 3 分鐘加強</button>
+        </div>
+
+        <section id="dailyPage" class="content-page active">
+          <div id="days" class="days"></div>
+        </section>
+
+        <section id="nightPage" class="night content-page">
+          <h3>每天睡前 3 分鐘加強</h3>
+          <div class="exercise">
+            <div class="exercise-head">
+              <strong>仰躺縮小腹呼吸</strong>
+              <span class="tag time">1 分鐘</span>
+            </div>
+            <div class="exercise-meta">建議：60 秒 × 1 組</div>
+            <button class="btn-main start-btn" data-name="睡前｜仰躺縮小腹呼吸" data-seconds="60" data-sets="1">啟動計時</button>
+            <div class="night-guide-hook" data-guide="仰躺縮小腹呼吸"></div>
+          </div>
+          <div class="exercise">
+            <div class="exercise-head">
+              <strong>抬腿核心</strong>
+              <span class="tag">15-20 下</span>
+            </div>
+            <div class="exercise-meta">次數項目，自行計數</div>
+            <div class="night-guide-hook" data-guide="抬腿核心"></div>
+          </div>
+          <div class="exercise">
+            <div class="exercise-head">
+              <strong>平板支撐</strong>
+              <span class="tag time">30-60 秒</span>
+            </div>
+            <div class="exercise-meta">可用上方自訂計時器設定 30~60 秒</div>
+            <div class="night-guide-hook" data-guide="平板支撐"></div>
+          </div>
+          <div class="exercise">
+            <div class="exercise-head">
+              <strong>抱膝放鬆</strong>
+              <span class="tag time">30 秒</span>
+            </div>
+            <div class="exercise-meta">建議：30 秒 × 1 組</div>
+            <button class="btn-main start-btn" data-name="睡前｜抱膝放鬆" data-seconds="30" data-sets="1">啟動計時</button>
+            <div class="night-guide-hook" data-guide="抱膝放鬆"></div>
+          </div>
+        </section>
+
+        <section class="tips" id="tipsSection">
+          建議搭配：每天快走 20 分鐘、避免含糖飲料與宵夜、保持良好睡眠。<br />
+          完成 7 天後可重複循環 4 週。
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <div class="mobile-timer-dock" id="mobileTimerDock" aria-live="polite">
+    <div class="mobile-timer-top">
+      <div class="mobile-timer-copy">
+        <div class="mobile-timer-label">目前計時</div>
+        <div class="mobile-timer-name" id="mobileTimerName">尚未開始</div>
+      </div>
+      <div class="mobile-timer-clock" id="mobileTimerClock">00:00</div>
+    </div>
+    <div class="mobile-timer-actions">
+      <button class="btn-main" id="mobilePauseResume" disabled>暫停</button>
+      <button class="btn-warn" id="mobileResetTimer" disabled>重設</button>
+    </div>
+  </div>
+
+  <script>
+    const days = [
+      {
+        title: "第 1 天：核心啟動",
+        items: [
+          { name: "平板支撐", seconds: 20, sets: 3 },
+          { name: "仰臥抬腿", reps: "15 下 × 3" },
+          { name: "俄羅斯轉體", reps: "20 下 × 3" },
+          { name: "登山者", seconds: 30, sets: 2 }
+        ]
+      },
+      {
+        title: "第 2 天：燃脂提升",
+        items: [
+          { name: "高抬腿", seconds: 30, sets: 3 },
+          { name: "登山者", seconds: 30, sets: 3 },
+          { name: "平板肩碰", reps: "20 下 × 3" },
+          { name: "腳踏車捲腹", reps: "20 下 × 3" }
+        ]
+      },
+      {
+        title: "第 3 天：下腹攻擊",
+        items: [
+          { name: "反向捲腹", reps: "15 下 × 3" },
+          { name: "抬腿", reps: "15 下 × 3" },
+          { name: "交替踢腿", seconds: 30, sets: 3 },
+          { name: "平板支撐", seconds: 30, sets: 2 }
+        ]
+      },
+      {
+        title: "第 4 天：休息 + 縮小腹訓練",
+        items: [
+          { name: "縮小腹呼吸（維持）", seconds: 10, sets: 10, note: "吸氣 → 吐氣縮小腹 → 維持 10 秒 → 放鬆；建議做 2~3 回" }
+        ]
+      },
+      {
+        title: "第 5 天：燃脂爆汗",
+        items: [
+          { name: "波比跳", reps: "10 下 × 3" },
+          { name: "登山者", seconds: 30, sets: 3 },
+          { name: "俄羅斯轉體", reps: "20 下 × 3" },
+          { name: "開合平板", reps: "20 下 × 3" }
+        ]
+      },
+      {
+        title: "第 6 天：核心雕塑",
+        items: [
+          { name: "Dead Bug", reps: "20 下 × 3" },
+          { name: "平板支撐", seconds: 40, sets: 3 },
+          { name: "腳踏車捲腹", reps: "20 下 × 3" },
+          { name: "抬腿", reps: "15 下 × 3" }
+        ]
+      },
+      {
+        title: "第 7 天：燃脂總結",
+        items: [
+          { name: "跳繩 / 原地跳", seconds: 60, sets: 3 },
+          { name: "登山者", seconds: 30, sets: 3 },
+          { name: "平板支撐", seconds: 40, sets: 3 },
+          { name: "俄羅斯轉體", reps: "20 下 × 3" }
+        ]
+      }
+    ];
+
+    const exerciseGuides = {
+      "平板支撐": "怎麼做：前臂撐地，手肘在肩膀正下方，身體保持一直線，核心收緊並正常呼吸。\n重點：肚臍往內收、肩膀遠離耳朵。\n常見錯誤：腰塌、屁股翹太高。\n簡化版：膝蓋著地平板。",
+      "登山者": "怎麼做：高位平板姿勢，左右膝交替往胸口帶。\n重點：腳在動、上半身穩，背不要晃。\n常見錯誤：屁股越做越高、腰塌。\n簡化版：慢登山者，一步一步帶膝。",
+      "仰臥抬腿": "怎麼做：平躺，下背貼地，雙腿慢抬到 60~90 度，再慢放到離地 5~10 公分。\n重點：放下越慢越有效。\n常見錯誤：放下時腰拱起。\n簡化版：彎膝抬腿。",
+      "俄羅斯轉體": "怎麼做：坐姿微後傾，背打直，胸口左右轉動。\n重點：轉的是上半身，不是手在甩。\n常見錯誤：駝背、只甩手。\n進階：雙腳離地。",
+      "高抬腿": "怎麼做：站姿核心收緊，膝蓋交替抬高，前腳掌落地。\n重點：身體不要後仰、腳步輕。\n簡化版：快走抬腿。",
+      "平板肩碰": "怎麼做：高位平板，右手碰左肩、左手碰右肩交替。\n重點：骨盆穩定，不要左右搖。\n建議：腳打開一點更穩。",
+      "腳踏車捲腹": "怎麼做：平躺肩胛微離地，手肘與對側膝靠近，另一腿伸直。\n重點：用腹部旋轉，不要扭脖子。\n常見錯誤：用手拉頭、腰拱起。",
+      "反向捲腹": "怎麼做：平躺膝蓋彎 90 度，用下腹把骨盆捲起離地後慢放回。\n重點：要有骨盆捲起，不只是抬膝。",
+      "交替踢腿": "怎麼做：平躺雙腿離地 10~20 公分，小幅度上下交替踢腿。\n重點：下背要穩定貼地。\n簡化版：抬高腿或改彎膝。",
+      "波比跳": "怎麼做：站立→下蹲撐地→雙腳跳到平板→跳回→站起。\n重點：初學可不加俯臥撐、不用跳太高。\n簡化版：取消最後跳躍。",
+      "開合平板": "怎麼做：高位平板，雙腳跳開再跳回。\n重點：上半身保持穩定。\n簡化版：改一步一步開合。",
+      "Dead Bug": "怎麼做：平躺手朝上、膝蓋 90 度，對側手腳慢伸展再回來交替。\n重點：下背貼地，腰離地就縮小幅度。",
+      "跳繩 / 原地跳": "怎麼做：前腳掌輕跳，膝蓋微彎，節奏穩定。\n簡化版：原地踏步或快走。",
+      "縮小腹呼吸": "怎麼做：吸氣後吐氣，同時把肚臍往內往上收，維持 5~10 秒再放鬆。\n重點：不要憋氣太久，持續呼吸。",
+      "抱膝放鬆": "怎麼做：平躺雙膝抱胸，肩頸放鬆深呼吸，可左右輕搖。"
+    };
+
+    const guideAliases = {
+      "抬腿": "仰臥抬腿",
+      "抬腿核心": "仰臥抬腿",
+      "仰躺縮小腹呼吸": "縮小腹呼吸",
+      "縮小腹呼吸（維持）": "縮小腹呼吸"
+    };
+
+    function getGuideKey(name) {
+      return guideAliases[name] || name;
+    }
+
+    function getGuideText(name) {
+      const key = getGuideKey(name);
+      return exerciseGuides[key] || "";
+    }
+
+    function svgToDataUri(svg) {
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+    }
+
+    const exerciseImagePaths = {
+      "平板支撐": "./Workout_images/平板支撐.png",
+      "登山者": "./Workout_images/登山者.png",
+      "仰臥抬腿": "./Workout_images/仰臥抬腿.png",
+      "抬腿": "./Workout_images/抬腿.png",
+      "抬腿核心": "./Workout_images/抬腿核心.png",
+      "俄羅斯轉體": "./Workout_images/俄羅斯轉體.png",
+      "高抬腿": "./Workout_images/高抬腿.png",
+      "平板肩碰": "./Workout_images/平板肩碰.png",
+      "腳踏車捲腹": "./Workout_images/腳踏車捲腹.png",
+      "反向捲腹": "./Workout_images/反向捲腹.png",
+      "交替踢腿": "./Workout_images/交替踢腿.png",
+      "波比跳": "./Workout_images/波比跳.png",
+      "開合平板": "./Workout_images/開合平板.png",
+      "Dead Bug": "./Dead Bug .png",
+      "跳繩 / 原地跳": "./Workout_images/跳繩_原地跳.png",
+      "縮小腹呼吸": "./Workout_images/縮小腹呼吸.png",
+      "仰躺縮小腹呼吸": "./Workout_images/仰躺縮小腹呼吸.png",
+      "抱膝放鬆": "./Workout_images/抱膝放鬆.png"
+    };
+
+    const exerciseIllustrations = {
+      "平板支撐": {
+        caption: "前臂撐地，耳朵、肩膀、髖部、腳跟盡量保持一直線，腹部持續內收。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="平板支撐示意圖">
+          <defs>
+            <linearGradient id="plankBg" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#f7fffc"/>
+              <stop offset="100%" stop-color="#e6f6ef"/>
+            </linearGradient>
+          </defs>
+          <rect width="360" height="220" rx="24" fill="url(#plankBg)"/>
+          <rect x="18" y="18" width="324" height="184" rx="18" fill="#ffffff" opacity="0.78"/>
+          <text x="28" y="42" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">平板支撐</text>
+          <text x="28" y="65" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">手肘在肩膀正下方，臀部不要翹高</text>
+          <line x1="28" y1="166" x2="332" y2="166" stroke="#cfe5db" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="250" cy="105" r="13" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+          <line x1="236" y1="112" x2="152" y2="128" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <line x1="152" y1="128" x2="92" y2="152" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <line x1="170" y1="124" x2="162" y2="152" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <line x1="158" y1="152" x2="146" y2="152" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <line x1="188" y1="121" x2="223" y2="154" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <line x1="152" y1="128" x2="206" y2="156" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <line x1="204" y1="156" x2="252" y2="156" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <line x1="116" y1="150" x2="104" y2="150" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+          <text x="232" y="90" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">頭頸放鬆</text>
+          <text x="102" y="118" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">手肘撐地</text>
+          <text x="206" y="178" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">腳跟往後推</text>
+        </svg>`
+      },
+      "登山者": {
+        caption: "高位平板姿勢下，交替把膝蓋往胸口帶；重點是上半身穩定，不是只求速度。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="登山者示意圖">
+          <rect width="360" height="220" rx="24" fill="#eefaf6"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">登山者</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">左右交替帶膝，肩膀維持在手腕上方</text>
+          <g transform="translate(18 76)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="94" x2="128" y2="94" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="112" cy="26" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="100" y1="34" x2="56" y2="50" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="56" y1="50" x2="24" y2="78" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="24" y1="78" x2="18" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="70" y1="46" x2="96" y2="78" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="56" y1="50" x2="84" y2="90" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="90" x2="122" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="18" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">左膝向前</text>
+          </g>
+          <g transform="translate(196 76)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="94" x2="128" y2="94" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="112" cy="26" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="100" y1="34" x2="56" y2="50" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="56" y1="50" x2="24" y2="78" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="24" y1="78" x2="18" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="70" y1="46" x2="42" y2="82" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="56" y1="50" x2="84" y2="90" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="90" x2="122" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="18" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">右膝向前</text>
+          </g>
+        </svg>`
+      },
+      "仰臥抬腿": {
+        caption: "平躺時下背盡量貼地，雙腿抬起後慢慢放下，避免腰拱起。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="仰臥抬腿示意圖">
+          <rect width="360" height="220" rx="24" fill="#f8fbff"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">仰臥抬腿</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">慢抬慢放，下背維持貼地</text>
+          <g transform="translate(18 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="94" x2="128" y2="94" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="38" cy="76" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="48" y1="76" x2="92" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="92" y1="76" x2="122" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="78" y1="76" x2="78" y2="36" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="88" y1="76" x2="88" y2="30" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="76" x2="44" y2="58" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="58" y1="76" x2="44" y2="92" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <text x="20" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">抬起</text>
+          </g>
+          <g transform="translate(196 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="94" x2="128" y2="94" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="38" cy="76" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="48" y1="76" x2="92" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="92" y1="76" x2="128" y2="90" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="78" y1="76" x2="120" y2="58" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="88" y1="76" x2="128" y2="64" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="76" x2="44" y2="58" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="58" y1="76" x2="44" y2="92" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <text x="20" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">慢慢放下</text>
+          </g>
+        </svg>`
+      },
+      "俄羅斯轉體": {
+        caption: "坐姿微後傾，胸口左右旋轉，不要只甩手；腳可踩地或抬起。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="俄羅斯轉體示意圖">
+          <rect width="360" height="220" rx="24" fill="#fff9f3"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">俄羅斯轉體</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">胸口帶動左右轉，不要圓背</text>
+          <g transform="translate(18 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#e9dac9" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="52" cy="46" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="58" y1="52" x2="86" y2="74" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="82" y1="70" x2="112" y2="56" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="82" y1="70" x2="96" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="96" y1="92" x2="122" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="92" y1="90" x2="68" y2="98" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="112" y1="56" x2="126" y2="42" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+            <text x="20" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b45309">轉向右側</text>
+          </g>
+          <g transform="translate(196 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#e9dac9" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="94" cy="46" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="88" y1="52" x2="60" y2="74" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="64" y1="70" x2="34" y2="56" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="64" y1="70" x2="50" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="50" y1="92" x2="24" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="54" y1="90" x2="78" y2="98" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="34" y1="56" x2="20" y2="42" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+            <text x="20" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b45309">轉向左側</text>
+          </g>
+        </svg>`
+      },
+      "高抬腿": {
+        caption: "站姿下核心收緊、快速交替抬膝，身體不要後仰，前腳掌輕落地。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="高抬腿示意圖">
+          <rect width="360" height="220" rx="24" fill="#f1fbff"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">高抬腿</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">快速但輕盈，膝蓋交替抬高</text>
+          <g transform="translate(18 76)">
+            <rect width="146" height="120" rx="16" fill="#ffffff"/>
+            <line x1="20" y1="104" x2="126" y2="104" stroke="#d0e7ee" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="72" cy="24" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="72" y1="35" x2="72" y2="72" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="72" y1="48" x2="44" y2="60" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="72" y1="48" x2="98" y2="58" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="72" y1="72" x2="52" y2="100" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="72" y1="72" x2="98" y2="86" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="98" y1="86" x2="118" y2="104" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">右膝抬高</text>
+          </g>
+          <g transform="translate(196 76)">
+            <rect width="146" height="120" rx="16" fill="#ffffff"/>
+            <line x1="20" y1="104" x2="126" y2="104" stroke="#d0e7ee" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="72" cy="24" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="72" y1="35" x2="72" y2="72" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="72" y1="48" x2="46" y2="58" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="72" y1="48" x2="100" y2="60" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="72" y1="72" x2="92" y2="100" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="72" y1="72" x2="46" y2="86" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="46" y1="86" x2="28" y2="104" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">左膝抬高</text>
+          </g>
+        </svg>`
+      },
+      "平板肩碰": {
+        caption: "高位平板時手掌撐地，單手碰對側肩，骨盆保持穩定，不要左右晃。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="平板肩碰示意圖">
+          <rect width="360" height="220" rx="24" fill="#eefcf7"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">平板肩碰</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">手掌撐地，單手交替碰肩</text>
+          <g transform="translate(18 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="108" cy="30" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="96" y1="38" x2="58" y2="50" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="50" x2="30" y2="82" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="70" y1="46" x2="90" y2="30" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="58" y1="50" x2="84" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="92" x2="124" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">右手碰左肩</text>
+          </g>
+          <g transform="translate(196 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="108" cy="30" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="96" y1="38" x2="58" y2="50" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="50" x2="30" y2="82" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="68" y1="46" x2="92" y2="62" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="58" y1="50" x2="84" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="92" x2="124" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">左手碰右肩</text>
+          </g>
+        </svg>`
+      },
+      "腳踏車捲腹": {
+        caption: "肩胛微離地，手肘往對側膝靠近，另一腿伸直；重點是腹部旋轉，不要拉脖子。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="腳踏車捲腹示意圖">
+          <rect width="360" height="220" rx="24" fill="#fff8fb"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">腳踏車捲腹</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">手肘找對側膝，另一腿伸直</text>
+          <g transform="translate(18 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#ead6e0" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="46" cy="58" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="54" y1="60" x2="84" y2="70" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="38" y1="52" x2="26" y2="40" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="54" y1="54" x2="68" y2="42" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="84" y1="70" x2="116" y2="48" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="70" x2="118" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b91c1c">左手肘靠右膝</text>
+          </g>
+          <g transform="translate(196 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#ead6e0" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="46" cy="58" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="54" y1="60" x2="84" y2="70" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="38" y1="54" x2="52" y2="42" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="54" y1="52" x2="68" y2="40" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="84" y1="70" x2="116" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="70" x2="118" y2="48" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b91c1c">右手肘靠左膝</text>
+          </g>
+        </svg>`
+      },
+      "反向捲腹": {
+        caption: "先抬膝到 90 度，再用下腹把骨盆輕捲起離地，慢慢回到起始位置。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="反向捲腹示意圖">
+          <rect width="360" height="220" rx="24" fill="#f6fbff"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">反向捲腹</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">骨盆往上捲，不只是抬膝</text>
+          <g transform="translate(18 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d8e5f4" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="38" cy="76" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="48" y1="76" x2="86" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="86" y1="76" x2="102" y2="58" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="102" y1="58" x2="122" y2="58" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="86" y1="76" x2="102" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="102" y1="92" x2="122" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">膝蓋 90 度</text>
+          </g>
+          <g transform="translate(196 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d8e5f4" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="38" cy="76" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="48" y1="76" x2="82" y2="68" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="82" y1="68" x2="100" y2="42" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="100" y1="42" x2="120" y2="42" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="82" y1="68" x2="102" y2="82" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="102" y1="82" x2="122" y2="82" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <path d="M74 72 Q70 48 54 44" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b45309">骨盆向上捲</text>
+          </g>
+        </svg>`
+      },
+      "交替踢腿": {
+        caption: "雙腿離地做小幅度上下交替踢動，下背貼地，腿太低會拉腰時就把幅度縮小。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="交替踢腿示意圖">
+          <rect width="360" height="220" rx="24" fill="#f7fbff"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">交替踢腿</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">雙腿離地小幅交替踢動</text>
+          <g transform="translate(18 78)">
+            <rect width="324" height="118" rx="16" fill="#ffffff"/>
+            <line x1="20" y1="96" x2="304" y2="96" stroke="#d6e6f2" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="42" cy="76" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="52" y1="76" x2="100" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="100" y1="76" x2="152" y2="58" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="100" y1="76" x2="152" y2="90" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="152" y1="58" x2="196" y2="76" stroke="#9dd5c0" stroke-width="4" stroke-linecap="round"/>
+            <line x1="152" y1="90" x2="196" y2="72" stroke="#9dd5c0" stroke-width="4" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">小幅度快速交替</text>
+          </g>
+        </svg>`
+      },
+      "波比跳": {
+        caption: "站立、下蹲撐地、跳到平板，再跳回站起；初學者可省略俯臥撐與最後跳躍。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="波比跳示意圖">
+          <rect width="360" height="220" rx="24" fill="#fff8f2"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">波比跳</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">站立 → 下蹲撐地 → 平板 → 站起</text>
+          <g transform="translate(18 78)">
+            <rect width="96" height="118" rx="16" fill="#ffffff"/>
+            <line x1="16" y1="96" x2="80" y2="96" stroke="#ecd8c4" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="48" cy="24" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="48" y1="34" x2="48" y2="68" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="48" y1="44" x2="30" y2="56" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="48" y1="44" x2="66" y2="56" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="48" y1="68" x2="34" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="48" y1="68" x2="62" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="20" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b45309">1. 站立</text>
+          </g>
+          <g transform="translate(132 78)">
+            <rect width="96" height="118" rx="16" fill="#ffffff"/>
+            <line x1="16" y1="96" x2="80" y2="96" stroke="#ecd8c4" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="50" cy="40" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="50" y1="50" x2="48" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="48" y1="64" x2="24" y2="92" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="48" y1="64" x2="72" y2="92" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="48" y1="76" x2="34" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="48" y1="76" x2="64" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="20" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b45309">2. 下蹲撐地</text>
+          </g>
+          <g transform="translate(246 78)">
+            <rect width="96" height="118" rx="16" fill="#ffffff"/>
+            <line x1="16" y1="96" x2="80" y2="96" stroke="#ecd8c4" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="74" cy="28" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="64" y1="36" x2="36" y2="48" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="36" y1="48" x2="18" y2="84" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="48" y1="44" x2="58" y2="76" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="36" y1="48" x2="58" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="92" x2="84" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#b45309">3. 跳到平板</text>
+          </g>
+        </svg>`
+      },
+      "開合平板": {
+        caption: "高位平板時雙腳跳開再跳回，肩膀與雙手位置穩定，不要聳肩。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="開合平板示意圖">
+          <rect width="360" height="220" rx="24" fill="#eefcf7"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">開合平板</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">高位平板，雙腳跳開再回來</text>
+          <g transform="translate(18 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="110" cy="28" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="98" y1="36" x2="58" y2="48" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="48" x2="30" y2="84" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="48" x2="84" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="92" x2="124" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">雙腳併攏</text>
+          </g>
+          <g transform="translate(196 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d3e6dc" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="110" cy="28" r="11" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="98" y1="36" x2="58" y2="48" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="48" x2="30" y2="84" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="58" y1="48" x2="76" y2="92" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="76" y1="92" x2="118" y2="84" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="76" y1="92" x2="128" y2="104" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">雙腳跳開</text>
+          </g>
+        </svg>`
+      },
+      "Dead Bug": {
+        caption: "平躺、腰背貼地，對側手腳慢慢伸直再回來，動作越慢越能控制核心。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="Dead Bug 示意圖">
+          <rect width="360" height="220" rx="24" fill="#f7fbff"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">Dead Bug</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">對側手腳伸直，腰背不要離地</text>
+          <g transform="translate(18 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d8e5f4" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="42" cy="76" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="52" y1="76" x2="92" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="72" y1="76" x2="72" y2="36" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="72" y1="76" x2="104" y2="44" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="92" y1="76" x2="112" y2="54" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="92" y1="76" x2="112" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">起始姿勢</text>
+          </g>
+          <g transform="translate(196 78)">
+            <rect width="146" height="118" rx="16" fill="#ffffff"/>
+            <line x1="18" y1="96" x2="128" y2="96" stroke="#d8e5f4" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="42" cy="76" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="52" y1="76" x2="92" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="72" y1="76" x2="108" y2="36" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="72" y1="76" x2="72" y2="36" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="92" y1="76" x2="126" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="92" y1="76" x2="112" y2="96" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <text x="18" y="20" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">對側伸直</text>
+          </g>
+        </svg>`
+      },
+      "跳繩 / 原地跳": {
+        caption: "以前腳掌輕輕彈跳，膝蓋微彎吸收落地；沒有跳繩也可做原地小跳。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="跳繩或原地跳示意圖">
+          <rect width="360" height="220" rx="24" fill="#f6fbff"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">跳繩 / 原地跳</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">前腳掌輕跳，維持穩定節奏</text>
+          <g transform="translate(70 72)">
+            <path d="M24 88 Q64 -6 104 88" fill="none" stroke="#94c7bc" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="64" cy="24" r="12" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="64" y1="36" x2="64" y2="76" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="64" y1="50" x2="40" y2="68" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="64" y1="50" x2="88" y2="68" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="64" y1="76" x2="48" y2="106" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="64" y1="76" x2="80" y2="106" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="18" y1="110" x2="110" y2="110" stroke="#d0e6ef" stroke-width="5" stroke-linecap="round"/>
+            <text x="-10" y="132" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">腳跟不必用力砸地</text>
+          </g>
+        </svg>`
+      },
+      "縮小腹呼吸": {
+        caption: "吸氣後吐氣，把肚臍往內往上收，維持 5 到 10 秒；感覺像褲頭被往內拉。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="縮小腹呼吸示意圖">
+          <rect width="360" height="220" rx="24" fill="#f5fbf8"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">縮小腹呼吸</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">吐氣時肚臍往內上收，持續呼吸</text>
+          <g transform="translate(18 74)">
+            <rect width="324" height="124" rx="18" fill="#ffffff"/>
+            <circle cx="108" cy="36" r="12" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="108" y1="48" x2="108" y2="92" stroke="#1d3d34" stroke-width="8" stroke-linecap="round"/>
+            <line x1="108" y1="60" x2="82" y2="76" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="108" y1="60" x2="134" y2="76" stroke="#1d3d34" stroke-width="6" stroke-linecap="round"/>
+            <line x1="108" y1="92" x2="92" y2="118" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="108" y1="92" x2="124" y2="118" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="108" cy="74" rx="18" ry="24" fill="none" stroke="#8ecfbe" stroke-width="4"/>
+            <path d="M158 76 C180 56, 198 56, 220 76" fill="none" stroke="#94c7bc" stroke-width="5" stroke-linecap="round"/>
+            <path d="M220 76 C242 96, 260 96, 282 76" fill="none" stroke="#94c7bc" stroke-width="5" stroke-linecap="round"/>
+            <polygon points="278,68 294,76 278,84" fill="#94c7bc"/>
+            <text x="160" y="42" font-size="13" font-family="Noto Sans TC, sans-serif" fill="#0f766e">吐氣時收腹</text>
+            <text x="160" y="62" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">想像褲頭被往內拉</text>
+          </g>
+        </svg>`
+      },
+      "抱膝放鬆": {
+        caption: "平躺把雙膝抱向胸口，肩頸放鬆，慢慢深呼吸，也可以左右輕搖。",
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="抱膝放鬆示意圖">
+          <rect width="360" height="220" rx="24" fill="#fffaf3"/>
+          <text x="24" y="38" font-size="18" font-family="Noto Sans TC, sans-serif" font-weight="700" fill="#18453b">抱膝放鬆</text>
+          <text x="24" y="60" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">抱向胸口，深呼吸，放鬆下背</text>
+          <g transform="translate(38 78)">
+            <rect width="284" height="118" rx="16" fill="#ffffff"/>
+            <line x1="20" y1="96" x2="264" y2="96" stroke="#e9dac9" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="62" cy="78" r="10" fill="#ffd8be" stroke="#1d3d34" stroke-width="3"/>
+            <line x1="72" y1="78" x2="112" y2="78" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="112" y1="78" x2="138" y2="54" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="138" y1="54" x2="164" y2="60" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="112" y1="78" x2="138" y2="88" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <line x1="138" y1="88" x2="164" y2="82" stroke="#1d3d34" stroke-width="7" stroke-linecap="round"/>
+            <path d="M108 72 Q132 46 156 54" fill="none" stroke="#94c7bc" stroke-width="4" stroke-linecap="round"/>
+            <path d="M108 84 Q132 100 156 88" fill="none" stroke="#94c7bc" stroke-width="4" stroke-linecap="round"/>
+            <text x="184" y="52" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#0f766e">膝蓋抱近身體</text>
+            <text x="184" y="72" font-size="12" font-family="Noto Sans TC, sans-serif" fill="#55786a">下背會比較放鬆</text>
+          </g>
+        </svg>`
+      }
+    };
+
+    function getIllustration(name) {
+      const key = getGuideKey(name);
+
+      if (exerciseImagePaths[name]) {
+        return {
+          type: "image",
+          src: exerciseImagePaths[name],
+          caption: (exerciseIllustrations[name] || exerciseIllustrations[key] || {}).caption || ""
+        };
+      }
+
+      if (exerciseImagePaths[key]) {
+        return {
+          type: "image",
+          src: exerciseImagePaths[key],
+          caption: (exerciseIllustrations[key] || {}).caption || ""
+        };
+      }
+
+      if (exerciseIllustrations[key]) {
+        return {
+          type: "svg",
+          svg: exerciseIllustrations[key].svg,
+          caption: exerciseIllustrations[key].caption || ""
+        };
+      }
+
+      return null;
+    }
+
+    function createGuideNode(name) {
+      const text = getGuideText(name);
+      const illustration = getIllustration(name);
+      if (!text && !illustration) return null;
+
+      const details = document.createElement("details");
+      details.className = "guide";
+
+      const summary = document.createElement("summary");
+      summary.textContent = "查看動作步驟與示意圖";
+
+      const body = document.createElement("div");
+      body.className = "guide-body";
+
+      if (illustration) {
+        const media = document.createElement("div");
+        media.className = "guide-media";
+
+        const figure = document.createElement("figure");
+        figure.className = "guide-figure";
+
+        const img = document.createElement("img");
+        img.src = illustration.type === "image"
+          ? encodeURI(illustration.src)
+          : svgToDataUri(illustration.svg);
+        img.alt = `${getGuideKey(name)}示意圖`;
+        img.loading = "lazy";
+        img.decoding = "async";
+
+        figure.appendChild(img);
+        media.appendChild(figure);
+
+        if (illustration.caption) {
+          const caption = document.createElement("p");
+          caption.className = "guide-caption";
+          caption.textContent = `圖解重點：${illustration.caption}`;
+          media.appendChild(caption);
+        }
+
+        body.appendChild(media);
+      }
+
+      if (text) {
+        const copy = document.createElement("div");
+        copy.className = "guide-text";
+        copy.textContent = text;
+        body.appendChild(copy);
+      }
+
+      details.append(summary, body);
+      return details;
+    }
+
+    const daysRoot = document.getElementById("days");
+    const quickNavEl = document.getElementById("quickNav");
+
+    function getDaySummaryMeta(day) {
+      const timedCount = day.items.filter((item) => item.seconds).length;
+      const repCount = day.items.length - timedCount;
+      const parts = [`${day.items.length} 個動作`];
+
+      if (timedCount && repCount) parts.push("計時 + 次數");
+      else if (timedCount) parts.push("可直接計時");
+      else parts.push("次數為主");
+
+      return parts.join(" · ");
+    }
+
+    function scrollToSection(target, beforeScroll) {
+      if (beforeScroll) beforeScroll();
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    function addQuickNavButton(label, onClick) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "quick-nav-btn";
+      btn.textContent = label;
+      btn.addEventListener("click", onClick);
+      quickNavEl.appendChild(btn);
+    }
+
+    addQuickNavButton("計時器", () => {
+      scrollToSection(document.getElementById("timerPanel"));
+    });
+
+    days.forEach((day, index) => {
+      const card = document.createElement("details");
+      card.className = "day-card";
+      card.id = `day-${index + 1}`;
+      card.open = index === 0;
+
+      const summary = document.createElement("summary");
+      summary.className = "day-summary";
+
+      const summaryMain = document.createElement("div");
+      summaryMain.className = "day-summary-main";
+
+      const title = document.createElement("div");
+      title.className = "day-title";
+      title.textContent = day.title;
+
+      const meta = document.createElement("div");
+      meta.className = "day-summary-meta";
+      meta.textContent = getDaySummaryMeta(day);
+
+      const icon = document.createElement("span");
+      icon.className = "day-summary-icon";
+      icon.textContent = "+";
+
+      summaryMain.append(title, meta);
+      summary.append(summaryMain, icon);
+      card.appendChild(summary);
+
+      const body = document.createElement("div");
+      body.className = "day-body";
+
+      day.items.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "exercise";
+
+        const head = document.createElement("div");
+        head.className = "exercise-head";
+
+        const strong = document.createElement("strong");
+        strong.textContent = item.name;
+
+        const tag = document.createElement("span");
+        tag.className = item.seconds ? "tag time" : "tag";
+        tag.textContent = item.seconds
+          ? `${item.seconds >= 60 ? item.seconds / 60 + " 分鐘" : item.seconds + " 秒"} × ${item.sets} 組`
+          : item.reps;
+
+        head.append(strong, tag);
+        row.appendChild(head);
+
+        const meta = document.createElement("div");
+        meta.className = "exercise-meta";
+        meta.textContent = item.note || (item.seconds ? "可使用計時器逐組完成" : "次數項目，自行計數");
+        row.appendChild(meta);
+
+        const guideNode = createGuideNode(item.name);
+        if (guideNode) row.appendChild(guideNode);
+
+        if (item.seconds) {
+          const btn = document.createElement("button");
+          btn.className = "btn-main start-btn";
+          btn.textContent = "啟動計時";
+          btn.dataset.name = `${day.title}｜${item.name}`;
+          btn.dataset.seconds = String(item.seconds);
+          btn.dataset.sets = String(item.sets);
+          row.appendChild(btn);
+        }
+
+        body.appendChild(row);
+      });
+
+      card.appendChild(body);
+      daysRoot.appendChild(card);
+
+      addQuickNavButton(`第${index + 1}天`, () => {
+        scrollToSection(card, () => {
+          showPage("daily");
+          card.open = true;
+        });
+      });
+    });
+
+    addQuickNavButton("睡前", () => {
+      scrollToSection(document.getElementById("nightPage"), () => showPage("night"));
+    });
+    addQuickNavButton("建議", () => {
+      scrollToSection(document.getElementById("tipsSection"));
+    });
+
+    document.querySelectorAll(".night-guide-hook").forEach((hook) => {
+      const guideName = hook.dataset.guide;
+      const guideNode = createGuideNode(guideName);
+      if (guideNode) hook.replaceWith(guideNode);
+      else hook.remove();
+    });
+
+    const timerNameEl = document.getElementById("timerName");
+    const timerStageEl = document.getElementById("timerStage");
+    const clockEl = document.getElementById("clock");
+    const progressEl = document.getElementById("progress");
+    const dailyPageEl = document.getElementById("dailyPage");
+    const nightPageEl = document.getElementById("nightPage");
+    const showDailyBtn = document.getElementById("showDaily");
+    const showNightBtn = document.getElementById("showNight");
+
+    const restSecondsEl = document.getElementById("restSeconds");
+    const customSecondsEl = document.getElementById("customSeconds");
+    const customSetsEl = document.getElementById("customSets");
+
+    const startCustomBtn = document.getElementById("startCustom");
+    const pauseResumeBtn = document.getElementById("pauseResume");
+    const skipStageBtn = document.getElementById("skipStage");
+    const resetTimerBtn = document.getElementById("resetTimer");
+    const mobileTimerDockEl = document.getElementById("mobileTimerDock");
+    const mobileTimerNameEl = document.getElementById("mobileTimerName");
+    const mobileTimerClockEl = document.getElementById("mobileTimerClock");
+    const mobilePauseResumeBtn = document.getElementById("mobilePauseResume");
+    const mobileResetTimerBtn = document.getElementById("mobileResetTimer");
+
+    let tickId = null;
+    let paused = false;
+    let state = null;
+
+    function formatTime(totalSeconds) {
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function beep(type = "work") {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        if (type === "done") osc.frequency.value = 1046;
+        else if (type === "countdown") osc.frequency.value = 1320;
+        else if (type === "rest") osc.frequency.value = 740;
+        else osc.frequency.value = 880;
+        const duration = type === "countdown" ? 0.11 : 0.2;
+        gain.gain.setValueAtTime(0.001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.09, ctx.currentTime + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration - 0.02);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (_) {
+        // Ignore audio errors in unsupported browsers.
+      }
+    }
+
+    function showPage(page) {
+      const isDaily = page === "daily";
+      dailyPageEl.classList.toggle("active", isDaily);
+      nightPageEl.classList.toggle("active", !isDaily);
+      showDailyBtn.classList.toggle("active", isDaily);
+      showNightBtn.classList.toggle("active", !isDaily);
+    }
+
+    function setButtons(enabled) {
+      pauseResumeBtn.disabled = !enabled;
+      skipStageBtn.disabled = !enabled;
+      resetTimerBtn.disabled = !enabled;
+      pauseResumeBtn.textContent = paused ? "繼續" : "暫停";
+      mobilePauseResumeBtn.disabled = !enabled;
+      mobileResetTimerBtn.disabled = !enabled;
+      mobilePauseResumeBtn.textContent = paused ? "繼續" : "暫停";
+    }
+
+    function updateDisplay() {
+      if (!state) {
+        timerNameEl.textContent = "尚未開始";
+        timerStageEl.textContent = "按下課表中的「啟動計時」或使用自訂計時";
+        clockEl.textContent = "00:00";
+        progressEl.style.width = "0%";
+        mobileTimerNameEl.textContent = "尚未開始";
+        mobileTimerClockEl.textContent = "00:00";
+        mobileTimerDockEl.classList.remove("visible");
+        document.body.classList.remove("dock-visible");
+        setButtons(false);
+        return;
+      }
+
+      timerNameEl.textContent = state.name;
+      timerStageEl.textContent = state.phase === "work"
+        ? `第 ${state.currentSet}/${state.totalSets} 組｜訓練中`
+        : `第 ${state.currentSet}/${state.totalSets} 組完成｜休息中`;
+      clockEl.textContent = formatTime(state.remaining);
+      mobileTimerNameEl.textContent = state.name;
+      mobileTimerClockEl.textContent = formatTime(state.remaining);
+      mobileTimerDockEl.classList.add("visible");
+      document.body.classList.add("dock-visible");
+
+      const pct = 100 * (1 - state.remaining / state.phaseDuration);
+      progressEl.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+      setButtons(true);
+    }
+
+    function stopTimer(clearState = true) {
+      if (tickId) {
+        clearInterval(tickId);
+        tickId = null;
+      }
+      paused = false;
+      if (clearState) state = null;
+      updateDisplay();
+    }
+
+    function togglePause() {
+      if (!state) return;
+      paused = !paused;
+      pauseResumeBtn.textContent = paused ? "繼續" : "暫停";
+      mobilePauseResumeBtn.textContent = paused ? "繼續" : "暫停";
+      timerStageEl.textContent = paused
+        ? `${timerStageEl.textContent}（已暫停）`
+        : timerStageEl.textContent.replace("（已暫停）", "");
+    }
+
+    function finishTimer() {
+      if (tickId) {
+        clearInterval(tickId);
+        tickId = null;
+      }
+
+      paused = false;
+      state = null;
+      timerNameEl.textContent = "本輪完成";
+      timerStageEl.textContent = "全部完成，做得很好";
+      clockEl.textContent = "00:00";
+      progressEl.style.width = "100%";
+      mobileTimerDockEl.classList.remove("visible");
+      document.body.classList.remove("dock-visible");
+      setButtons(false);
+    }
+
+    function advanceStage() {
+      if (!state) return;
+
+      if (state.phase === "work") {
+        if (state.currentSet >= state.totalSets) {
+          beep("done");
+          finishTimer();
+          return;
+        }
+
+        state.phase = "rest";
+        state.phaseDuration = Math.max(5, Number(restSecondsEl.value) || 20);
+        state.remaining = state.phaseDuration;
+        beep("rest");
+      } else {
+        state.currentSet += 1;
+        state.phase = "work";
+        state.phaseDuration = state.workSeconds;
+        state.remaining = state.workSeconds;
+        beep("work");
+      }
+
+      updateDisplay();
+    }
+
+    function startTimer(name, seconds, sets) {
+      stopTimer(false);
+
+      const workSeconds = Math.max(5, Number(seconds) || 30);
+      const totalSets = Math.max(1, Number(sets) || 1);
+
+      state = {
+        name,
+        workSeconds,
+        totalSets,
+        currentSet: 1,
+        phase: "work",
+        phaseDuration: workSeconds,
+        remaining: workSeconds
+      };
+
+      paused = false;
+      updateDisplay();
+      beep("work");
+
+      tickId = setInterval(() => {
+        if (!state || paused) return;
+
+        if (state.remaining > 0) {
+          state.remaining -= 1;
+          if (state.remaining > 0 && state.remaining <= 5) {
+            beep("countdown");
+          }
+          updateDisplay();
+          return;
+        }
+
+        advanceStage();
+      }, 1000);
+    }
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target.classList.contains("start-btn")) {
+        const name = target.dataset.name;
+        const seconds = target.dataset.seconds;
+        const sets = target.dataset.sets;
+        startTimer(name, seconds, sets);
+      }
+    });
+
+    startCustomBtn.addEventListener("click", () => {
+      startTimer("自訂計時", customSecondsEl.value, customSetsEl.value);
+    });
+
+    showDailyBtn.addEventListener("click", () => showPage("daily"));
+    showNightBtn.addEventListener("click", () => showPage("night"));
+
+    pauseResumeBtn.addEventListener("click", () => {
+      togglePause();
+    });
+
+    skipStageBtn.addEventListener("click", () => {
+      if (!state) return;
+      advanceStage();
+    });
+
+    resetTimerBtn.addEventListener("click", () => {
+      stopTimer(true);
+    });
+
+    mobilePauseResumeBtn.addEventListener("click", () => {
+      togglePause();
+    });
+
+    mobileResetTimerBtn.addEventListener("click", () => {
+      stopTimer(true);
+    });
+
+    updateDisplay();
+    showPage("daily");
+  </script>
+</body>
+</html>
