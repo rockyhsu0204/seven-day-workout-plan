@@ -1552,6 +1552,7 @@
     let tickId = null;
     let paused = false;
     let state = null;
+    let audioCtx = null;
 
     function formatTime(totalSeconds) {
       const m = Math.floor(totalSeconds / 60);
@@ -1559,9 +1560,26 @@
       return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
     }
 
+    function getAudioContext() {
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return null;
+        audioCtx = new Ctx();
+      }
+      return audioCtx;
+    }
+
+    function primeAudio() {
+      const ctx = getAudioContext();
+      if (ctx && ctx.state === "suspended") {
+        ctx.resume().catch(() => {});
+      }
+    }
+
     function beep(type = "work") {
       try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const ctx = getAudioContext();
+        if (!ctx) return;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = "sine";
@@ -1580,6 +1598,12 @@
       } catch (_) {
         // Ignore audio errors in unsupported browsers.
       }
+    }
+
+    function shouldPlayCountdownCue(currentState) {
+      if (!currentState || currentState.remaining <= 0) return false;
+      if (currentState.phase === "prep") return true;
+      return currentState.remaining <= 5;
     }
 
     function showPage(page) {
@@ -1709,6 +1733,7 @@
 
     function startTimer(name, seconds, sets, prepSeconds, restSeconds) {
       stopTimer(false);
+      primeAudio();
 
       const workSeconds = Math.max(5, Number(seconds) || 30);
       const totalSets = Math.max(1, Number(sets) || 1);
@@ -1736,7 +1761,7 @@
 
         if (state.remaining > 0) {
           state.remaining -= 1;
-          if (state.remaining > 0 && state.remaining <= (state.phase === "prep" ? 3 : 5)) {
+          if (shouldPlayCountdownCue(state)) {
             beep("countdown");
           }
           updateDisplay();
@@ -1749,6 +1774,9 @@
 
     document.addEventListener("click", (e) => {
       const target = e.target;
+      if (target.closest("button, summary")) {
+        primeAudio();
+      }
       if (target.classList.contains("start-btn")) {
         const name = target.dataset.name;
         const seconds = target.dataset.seconds;
