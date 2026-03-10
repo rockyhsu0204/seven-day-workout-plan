@@ -621,7 +621,10 @@
       <aside class="panel" id="timerPanel">
         <h2 class="timer-title">訓練計時器</h2>
 
-        <div class="label">休息秒數（組間）</div>
+        <div class="label">自訂預備秒數</div>
+        <input id="setupSeconds" type="number" min="3" max="30" step="1" value="8" />
+
+        <div class="label" style="margin-top:10px;">自訂休息秒數（組間）</div>
         <input id="restSeconds" type="number" min="5" max="120" step="5" value="20" />
 
         <div class="label" style="margin-top:10px;">自訂秒數</div>
@@ -647,7 +650,7 @@
           <button class="btn-warn" id="resetTimer" disabled>重設</button>
         </div>
 
-        <p class="small">流程：工作倒數 → 休息倒數（最後一組不休息）→ 完成提示。</p>
+        <p class="small">流程：預備倒數 → 工作倒數 → 休息倒數（最後一組不休息）→ 完成提示。課表按鈕會優先使用各動作預設秒數。</p>
       </aside>
 
       <section class="panel" id="contentPanel">
@@ -668,8 +671,8 @@
               <strong>仰躺縮小腹呼吸</strong>
               <span class="tag time">1 分鐘</span>
             </div>
-            <div class="exercise-meta">建議：60 秒 × 1 組</div>
-            <button class="btn-main start-btn" data-name="睡前｜仰躺縮小腹呼吸" data-seconds="60" data-sets="1">啟動計時</button>
+            <div class="exercise-meta">建議：60 秒 × 1 組｜預備 6 秒</div>
+            <button class="btn-main start-btn" data-name="睡前｜仰躺縮小腹呼吸" data-seconds="60" data-sets="1" data-prep-seconds="6" data-rest-seconds="5">啟動計時</button>
             <div class="night-guide-hook" data-guide="仰躺縮小腹呼吸"></div>
           </div>
           <div class="exercise">
@@ -677,7 +680,8 @@
               <strong>抬腿核心</strong>
               <span class="tag">15-20 下</span>
             </div>
-            <div class="exercise-meta">次數項目，自行計數</div>
+            <div class="exercise-meta">建議節奏：45 秒 × 1 組｜預備 10 秒</div>
+            <button class="btn-main start-btn" data-name="睡前｜抬腿核心" data-seconds="45" data-sets="1" data-prep-seconds="10" data-rest-seconds="10">依節奏計時</button>
             <div class="night-guide-hook" data-guide="抬腿核心"></div>
           </div>
           <div class="exercise">
@@ -685,7 +689,8 @@
               <strong>平板支撐</strong>
               <span class="tag time">30-60 秒</span>
             </div>
-            <div class="exercise-meta">可用上方自訂計時器設定 30~60 秒</div>
+            <div class="exercise-meta">建議節奏：40 秒 × 1 組｜預備 8 秒</div>
+            <button class="btn-main start-btn" data-name="睡前｜平板支撐" data-seconds="40" data-sets="1" data-prep-seconds="8" data-rest-seconds="10">啟動計時</button>
             <div class="night-guide-hook" data-guide="平板支撐"></div>
           </div>
           <div class="exercise">
@@ -693,8 +698,8 @@
               <strong>抱膝放鬆</strong>
               <span class="tag time">30 秒</span>
             </div>
-            <div class="exercise-meta">建議：30 秒 × 1 組</div>
-            <button class="btn-main start-btn" data-name="睡前｜抱膝放鬆" data-seconds="30" data-sets="1">啟動計時</button>
+            <div class="exercise-meta">建議：30 秒 × 1 組｜預備 5 秒</div>
+            <button class="btn-main start-btn" data-name="睡前｜抱膝放鬆" data-seconds="30" data-sets="1" data-prep-seconds="5" data-rest-seconds="5">啟動計時</button>
             <div class="night-guide-hook" data-guide="抱膝放鬆"></div>
           </div>
         </section>
@@ -726,61 +731,61 @@
       {
         title: "第 1 天：核心啟動",
         items: [
-          { name: "平板支撐", seconds: 20, sets: 3 },
-          { name: "仰臥抬腿", reps: "15 下 × 3" },
-          { name: "俄羅斯轉體", reps: "20 下 × 3" },
-          { name: "登山者", seconds: 30, sets: 2 }
+          { name: "平板支撐", seconds: 20, sets: 3, prepSeconds: 8, restSeconds: 20 },
+          { name: "仰臥抬腿", reps: "15 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 10, restSeconds: 25 },
+          { name: "俄羅斯轉體", reps: "20 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 8, restSeconds: 20 },
+          { name: "登山者", seconds: 30, sets: 2, prepSeconds: 8, restSeconds: 25 }
         ]
       },
       {
         title: "第 2 天：燃脂提升",
         items: [
-          { name: "高抬腿", seconds: 30, sets: 3 },
-          { name: "登山者", seconds: 30, sets: 3 },
-          { name: "平板肩碰", reps: "20 下 × 3" },
-          { name: "腳踏車捲腹", reps: "20 下 × 3" }
+          { name: "高抬腿", seconds: 30, sets: 3, prepSeconds: 6, restSeconds: 25 },
+          { name: "登山者", seconds: 30, sets: 3, prepSeconds: 8, restSeconds: 25 },
+          { name: "平板肩碰", reps: "20 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 8, restSeconds: 20 },
+          { name: "腳踏車捲腹", reps: "20 下 × 3", timerSeconds: 45, sets: 3, prepSeconds: 10, restSeconds: 25 }
         ]
       },
       {
         title: "第 3 天：下腹攻擊",
         items: [
-          { name: "反向捲腹", reps: "15 下 × 3" },
-          { name: "抬腿", reps: "15 下 × 3" },
-          { name: "交替踢腿", seconds: 30, sets: 3 },
-          { name: "平板支撐", seconds: 30, sets: 2 }
+          { name: "反向捲腹", reps: "15 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 10, restSeconds: 25 },
+          { name: "抬腿", reps: "15 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 10, restSeconds: 25 },
+          { name: "交替踢腿", seconds: 30, sets: 3, prepSeconds: 10, restSeconds: 25 },
+          { name: "平板支撐", seconds: 30, sets: 2, prepSeconds: 8, restSeconds: 25 }
         ]
       },
       {
         title: "第 4 天：休息 + 縮小腹訓練",
         items: [
-          { name: "縮小腹呼吸（維持）", seconds: 10, sets: 10, note: "吸氣 → 吐氣縮小腹 → 維持 10 秒 → 放鬆；建議做 2~3 回" }
+          { name: "縮小腹呼吸（維持）", seconds: 10, sets: 10, prepSeconds: 6, restSeconds: 5, note: "吸氣 → 吐氣縮小腹 → 維持 10 秒 → 放鬆；建議做 2~3 回" }
         ]
       },
       {
         title: "第 5 天：燃脂爆汗",
         items: [
-          { name: "波比跳", reps: "10 下 × 3" },
-          { name: "登山者", seconds: 30, sets: 3 },
-          { name: "俄羅斯轉體", reps: "20 下 × 3" },
-          { name: "開合平板", reps: "20 下 × 3" }
+          { name: "波比跳", reps: "10 下 × 3", timerSeconds: 35, sets: 3, prepSeconds: 8, restSeconds: 35 },
+          { name: "登山者", seconds: 30, sets: 3, prepSeconds: 8, restSeconds: 25 },
+          { name: "俄羅斯轉體", reps: "20 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 8, restSeconds: 20 },
+          { name: "開合平板", reps: "20 下 × 3", timerSeconds: 35, sets: 3, prepSeconds: 8, restSeconds: 25 }
         ]
       },
       {
         title: "第 6 天：核心雕塑",
         items: [
-          { name: "Dead Bug", reps: "20 下 × 3" },
-          { name: "平板支撐", seconds: 40, sets: 3 },
-          { name: "腳踏車捲腹", reps: "20 下 × 3" },
-          { name: "抬腿", reps: "15 下 × 3" }
+          { name: "Dead Bug", reps: "20 下 × 3", timerSeconds: 45, sets: 3, prepSeconds: 10, restSeconds: 20 },
+          { name: "平板支撐", seconds: 40, sets: 3, prepSeconds: 8, restSeconds: 25 },
+          { name: "腳踏車捲腹", reps: "20 下 × 3", timerSeconds: 45, sets: 3, prepSeconds: 10, restSeconds: 25 },
+          { name: "抬腿", reps: "15 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 10, restSeconds: 25 }
         ]
       },
       {
         title: "第 7 天：燃脂總結",
         items: [
-          { name: "跳繩 / 原地跳", seconds: 60, sets: 3 },
-          { name: "登山者", seconds: 30, sets: 3 },
-          { name: "平板支撐", seconds: 40, sets: 3 },
-          { name: "俄羅斯轉體", reps: "20 下 × 3" }
+          { name: "跳繩 / 原地跳", seconds: 60, sets: 3, prepSeconds: 6, restSeconds: 30 },
+          { name: "登山者", seconds: 30, sets: 3, prepSeconds: 8, restSeconds: 25 },
+          { name: "平板支撐", seconds: 40, sets: 3, prepSeconds: 8, restSeconds: 25 },
+          { name: "俄羅斯轉體", reps: "20 下 × 3", timerSeconds: 40, sets: 3, prepSeconds: 8, restSeconds: 20 }
         ]
       }
     ];
@@ -1364,7 +1369,7 @@
     const quickNavEl = document.getElementById("quickNav");
 
     function getDaySummaryMeta(day) {
-      const timedCount = day.items.filter((item) => item.seconds).length;
+      const timedCount = day.items.filter((item) => getWorkSeconds(item)).length;
       const repCount = day.items.length - timedCount;
       const parts = [`${day.items.length} 個動作`];
 
@@ -1373,6 +1378,34 @@
       else parts.push("次數為主");
 
       return parts.join(" · ");
+    }
+
+    function getWorkSeconds(item) {
+      return item.timerSeconds || item.seconds || 0;
+    }
+
+    function formatWorkSummary(item) {
+      const workSeconds = getWorkSeconds(item);
+      if (!workSeconds) return "";
+      return `${workSeconds >= 60 ? workSeconds / 60 + " 分鐘" : workSeconds + " 秒"} × ${item.sets} 組`;
+    }
+
+    function buildExerciseMeta(item) {
+      const parts = [];
+      const workSeconds = getWorkSeconds(item);
+
+      if (item.note) parts.push(item.note);
+      else if (item.reps) parts.push("次數項目，可搭配下方節奏計時");
+      else if (workSeconds) parts.push("可使用計時器逐組完成");
+
+      if (workSeconds) {
+        const prep = item.prepSeconds ?? 8;
+        const rest = item.restSeconds ?? 20;
+        parts.push(`預備 ${prep} 秒`);
+        if ((item.sets || 1) > 1) parts.push(`組間休息 ${rest} 秒`);
+      }
+
+      return parts.join("｜");
     }
 
     function scrollToSection(target, beforeScroll) {
@@ -1437,29 +1470,30 @@
         strong.textContent = item.name;
 
         const tag = document.createElement("span");
-        tag.className = item.seconds ? "tag time" : "tag";
-        tag.textContent = item.seconds
-          ? `${item.seconds >= 60 ? item.seconds / 60 + " 分鐘" : item.seconds + " 秒"} × ${item.sets} 組`
-          : item.reps;
+        const workSeconds = getWorkSeconds(item);
+        tag.className = workSeconds && !item.reps ? "tag time" : "tag";
+        tag.textContent = item.reps || formatWorkSummary(item);
 
         head.append(strong, tag);
         row.appendChild(head);
 
         const meta = document.createElement("div");
         meta.className = "exercise-meta";
-        meta.textContent = item.note || (item.seconds ? "可使用計時器逐組完成" : "次數項目，自行計數");
+        meta.textContent = buildExerciseMeta(item);
         row.appendChild(meta);
 
         const guideNode = createGuideNode(item.name);
         if (guideNode) row.appendChild(guideNode);
 
-        if (item.seconds) {
+        if (workSeconds) {
           const btn = document.createElement("button");
           btn.className = "btn-main start-btn";
-          btn.textContent = "啟動計時";
+          btn.textContent = item.reps ? "依節奏計時" : "啟動計時";
           btn.dataset.name = `${day.title}｜${item.name}`;
-          btn.dataset.seconds = String(item.seconds);
+          btn.dataset.seconds = String(workSeconds);
           btn.dataset.sets = String(item.sets);
+          btn.dataset.prepSeconds = String(item.prepSeconds ?? 8);
+          btn.dataset.restSeconds = String(item.restSeconds ?? 20);
           row.appendChild(btn);
         }
 
@@ -1500,6 +1534,7 @@
     const showDailyBtn = document.getElementById("showDaily");
     const showNightBtn = document.getElementById("showNight");
 
+    const setupSecondsEl = document.getElementById("setupSeconds");
     const restSecondsEl = document.getElementById("restSeconds");
     const customSecondsEl = document.getElementById("customSeconds");
     const customSetsEl = document.getElementById("customSets");
@@ -1533,6 +1568,7 @@
         if (type === "done") osc.frequency.value = 1046;
         else if (type === "countdown") osc.frequency.value = 1320;
         else if (type === "rest") osc.frequency.value = 740;
+        else if (type === "prep") osc.frequency.value = 660;
         else osc.frequency.value = 880;
         const duration = type === "countdown" ? 0.11 : 0.2;
         gain.gain.setValueAtTime(0.001, ctx.currentTime);
@@ -1579,9 +1615,13 @@
       }
 
       timerNameEl.textContent = state.name;
-      timerStageEl.textContent = state.phase === "work"
-        ? `第 ${state.currentSet}/${state.totalSets} 組｜訓練中`
-        : `第 ${state.currentSet}/${state.totalSets} 組完成｜休息中`;
+      if (state.phase === "prep") {
+        timerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組｜預備動作`;
+      } else if (state.phase === "work") {
+        timerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組｜訓練中`;
+      } else {
+        timerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組完成｜休息中`;
+      }
       clockEl.textContent = formatTime(state.remaining);
       mobileTimerNameEl.textContent = state.name;
       mobileTimerClockEl.textContent = formatTime(state.remaining);
@@ -1633,7 +1673,12 @@
     function advanceStage() {
       if (!state) return;
 
-      if (state.phase === "work") {
+      if (state.phase === "prep") {
+        state.phase = "work";
+        state.phaseDuration = state.workSeconds;
+        state.remaining = state.workSeconds;
+        beep("work");
+      } else if (state.phase === "work") {
         if (state.currentSet >= state.totalSets) {
           beep("done");
           finishTimer();
@@ -1641,46 +1686,57 @@
         }
 
         state.phase = "rest";
-        state.phaseDuration = Math.max(5, Number(restSecondsEl.value) || 20);
+        state.phaseDuration = state.restSeconds;
         state.remaining = state.phaseDuration;
         beep("rest");
       } else {
         state.currentSet += 1;
-        state.phase = "work";
-        state.phaseDuration = state.workSeconds;
-        state.remaining = state.workSeconds;
-        beep("work");
+        if (state.prepSeconds > 0) {
+          state.phase = "prep";
+          state.phaseDuration = state.prepSeconds;
+          state.remaining = state.prepSeconds;
+          beep("prep");
+        } else {
+          state.phase = "work";
+          state.phaseDuration = state.workSeconds;
+          state.remaining = state.workSeconds;
+          beep("work");
+        }
       }
 
       updateDisplay();
     }
 
-    function startTimer(name, seconds, sets) {
+    function startTimer(name, seconds, sets, prepSeconds, restSeconds) {
       stopTimer(false);
 
       const workSeconds = Math.max(5, Number(seconds) || 30);
       const totalSets = Math.max(1, Number(sets) || 1);
+      const setupSeconds = Math.max(0, Number(prepSeconds) || 0);
+      const intervalRestSeconds = Math.max(5, Number(restSeconds) || 20);
 
       state = {
         name,
         workSeconds,
+        prepSeconds: setupSeconds,
+        restSeconds: intervalRestSeconds,
         totalSets,
         currentSet: 1,
-        phase: "work",
-        phaseDuration: workSeconds,
-        remaining: workSeconds
+        phase: setupSeconds > 0 ? "prep" : "work",
+        phaseDuration: setupSeconds > 0 ? setupSeconds : workSeconds,
+        remaining: setupSeconds > 0 ? setupSeconds : workSeconds
       };
 
       paused = false;
       updateDisplay();
-      beep("work");
+      beep(setupSeconds > 0 ? "prep" : "work");
 
       tickId = setInterval(() => {
         if (!state || paused) return;
 
         if (state.remaining > 0) {
           state.remaining -= 1;
-          if (state.remaining > 0 && state.remaining <= 5) {
+          if (state.remaining > 0 && state.remaining <= (state.phase === "prep" ? 3 : 5)) {
             beep("countdown");
           }
           updateDisplay();
@@ -1697,12 +1753,14 @@
         const name = target.dataset.name;
         const seconds = target.dataset.seconds;
         const sets = target.dataset.sets;
-        startTimer(name, seconds, sets);
+        const prepSeconds = target.dataset.prepSeconds;
+        const restSeconds = target.dataset.restSeconds;
+        startTimer(name, seconds, sets, prepSeconds, restSeconds);
       }
     });
 
     startCustomBtn.addEventListener("click", () => {
-      startTimer("自訂計時", customSecondsEl.value, customSetsEl.value);
+      startTimer("自訂計時", customSecondsEl.value, customSetsEl.value, setupSecondsEl.value, restSecondsEl.value);
     });
 
     showDailyBtn.addEventListener("click", () => showPage("daily"));
