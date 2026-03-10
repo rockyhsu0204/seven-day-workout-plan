@@ -37,6 +37,10 @@
       line-height: 1.45;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -580,6 +584,134 @@
       margin-top: 10px;
     }
 
+    .timer-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(23, 32, 28, 0.52);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+
+    .timer-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .timer-overlay-card {
+      width: min(720px, 100%);
+      max-height: min(92vh, 900px);
+      overflow: auto;
+      background: linear-gradient(180deg, #ffffff, #f5fbf8 100%);
+      border: 1px solid rgba(217, 226, 220, 0.9);
+      border-radius: 24px;
+      box-shadow: 0 28px 60px rgba(16, 24, 20, 0.25);
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .timer-overlay-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .timer-overlay-kicker {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .timer-overlay-title {
+      margin-top: 4px;
+      font-size: clamp(1.15rem, 3vw, 1.55rem);
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .timer-overlay-stage {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-top: 6px;
+    }
+
+    .timer-overlay-close {
+      flex: 0 0 auto;
+      background: #edf3ef;
+      color: #244236;
+      border: 1px solid #d2dfd7;
+    }
+
+    .timer-overlay-clock {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(3rem, 12vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+      text-align: center;
+      color: #163c35;
+      margin-top: 6px;
+    }
+
+    .timer-overlay-bar {
+      height: 12px;
+      border-radius: 999px;
+      background: #d7eee5;
+      overflow: hidden;
+    }
+
+    .timer-overlay-bar > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #14b8a6, #0f766e);
+      transition: width 0.2s linear;
+    }
+
+    .timer-overlay-demo {
+      border: 1px solid #d6e6dc;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffffff, #f4fbf7);
+    }
+
+    .timer-overlay-demo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .timer-overlay-demo-empty {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      text-align: center;
+      color: #4b6658;
+    }
+
+    .timer-overlay-caption {
+      margin: 0;
+      color: #355243;
+      line-height: 1.5;
+      font-size: 0.92rem;
+    }
+
+    .timer-overlay-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
     @media (max-width: 920px) {
       .layout {
         grid-template-columns: 1fr;
@@ -642,6 +774,23 @@
       .mobile-timer-dock {
         display: block;
         bottom: max(12px, env(safe-area-inset-bottom));
+      }
+
+      .timer-overlay {
+        padding: 10px;
+      }
+
+      .timer-overlay-card {
+        padding: 14px;
+        border-radius: 20px;
+      }
+
+      .timer-overlay-actions {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .timer-overlay-demo-empty {
+        min-height: 180px;
       }
     }
   </style>
@@ -778,6 +927,34 @@
       <button class="btn-main" id="mobilePauseResume" disabled>暫停</button>
       <button class="btn-warn" id="mobileResetTimer" disabled>重設</button>
     </div>
+  </div>
+
+  <div class="timer-overlay" id="timerOverlay" aria-live="polite" aria-modal="true" role="dialog" aria-label="訓練計時器燈箱">
+    <section class="timer-overlay-card">
+      <div class="timer-overlay-head">
+        <div>
+          <div class="timer-overlay-kicker">Focus Timer</div>
+          <div class="timer-overlay-title" id="overlayTimerName">尚未開始</div>
+          <div class="timer-overlay-stage" id="overlayTimerStage">按下課表中的「啟動計時」後，會在這裡顯示目前動作。</div>
+        </div>
+        <button class="timer-overlay-close" id="overlayMinimize" type="button">縮小</button>
+      </div>
+
+      <div class="timer-overlay-clock" id="overlayClock">00:00</div>
+      <div class="timer-overlay-bar"><span id="overlayProgress"></span></div>
+
+      <div class="timer-overlay-demo" id="overlayDemoCard">
+        <div class="timer-overlay-demo-empty">開始某個動作後，這裡會顯示目前動作示範圖。</div>
+      </div>
+      <p class="timer-overlay-caption" id="overlayDemoCaption">進入訓練後可專心看中央畫面，不必回課表翻找圖片。</p>
+
+      <div class="timer-overlay-actions">
+        <button class="btn-main" id="overlayPauseResume" disabled>暫停</button>
+        <button class="btn-sub" id="overlaySkipStage" disabled>跳過階段</button>
+        <button class="btn-warn" id="overlayResetTimer" disabled>重設</button>
+        <button class="timer-overlay-close" id="overlayMinimizeBottom" type="button">縮小</button>
+      </div>
+    </section>
   </div>
 
   <script>
@@ -1605,12 +1782,25 @@
     const mobileResetTimerBtn = document.getElementById("mobileResetTimer");
     const timerDemoCardEl = document.getElementById("timerDemoCard");
     const timerDemoCaptionEl = document.getElementById("timerDemoCaption");
+    const timerOverlayEl = document.getElementById("timerOverlay");
+    const overlayTimerNameEl = document.getElementById("overlayTimerName");
+    const overlayTimerStageEl = document.getElementById("overlayTimerStage");
+    const overlayClockEl = document.getElementById("overlayClock");
+    const overlayProgressEl = document.getElementById("overlayProgress");
+    const overlayDemoCardEl = document.getElementById("overlayDemoCard");
+    const overlayDemoCaptionEl = document.getElementById("overlayDemoCaption");
+    const overlayPauseResumeBtn = document.getElementById("overlayPauseResume");
+    const overlaySkipStageBtn = document.getElementById("overlaySkipStage");
+    const overlayResetTimerBtn = document.getElementById("overlayResetTimer");
+    const overlayMinimizeBtn = document.getElementById("overlayMinimize");
+    const overlayMinimizeBottomBtn = document.getElementById("overlayMinimizeBottom");
 
     let tickId = null;
     let paused = false;
     let state = null;
     let audioCtx = null;
     let currentDemoKey = "__empty__";
+    let overlayVisible = false;
 
     function formatTime(totalSeconds) {
       const m = Math.floor(totalSeconds / 60);
@@ -1664,29 +1854,31 @@
       return currentState.remaining <= 5;
     }
 
-    function renderTimerDemo(guideName) {
-      const nextKey = guideName || "__empty__";
-      if (nextKey === currentDemoKey) return;
-      currentDemoKey = nextKey;
+    function setOverlayVisible(visible) {
+      overlayVisible = Boolean(visible);
+      timerOverlayEl.classList.toggle("visible", overlayVisible && Boolean(state));
+      document.body.classList.toggle("modal-open", overlayVisible && Boolean(state));
+    }
 
-      timerDemoCardEl.replaceChildren();
+    function renderDemoInto(cardEl, captionEl, guideName, emptyClassName) {
+      cardEl.replaceChildren();
 
       if (!guideName) {
         const empty = document.createElement("div");
-        empty.className = "timer-demo-empty";
+        empty.className = emptyClassName;
         empty.textContent = "開始某個動作後，這裡會自動顯示對應示範圖片。";
-        timerDemoCardEl.appendChild(empty);
-        timerDemoCaptionEl.textContent = "可先聽預備倒數，再跟著圖片擺好姿勢。";
+        cardEl.appendChild(empty);
+        captionEl.textContent = "可先聽預備倒數，再跟著圖片擺好姿勢。";
         return;
       }
 
       const illustration = getIllustration(guideName);
       if (!illustration) {
         const empty = document.createElement("div");
-        empty.className = "timer-demo-empty";
+        empty.className = emptyClassName;
         empty.textContent = `目前動作：${guideName}`;
-        timerDemoCardEl.appendChild(empty);
-        timerDemoCaptionEl.textContent = "這個動作目前沒有對應示範圖。";
+        cardEl.appendChild(empty);
+        captionEl.textContent = "這個動作目前沒有對應示範圖。";
         return;
       }
 
@@ -1696,10 +1888,18 @@
         : svgToDataUri(illustration.svg);
       img.alt = `${getGuideKey(guideName)}示意圖`;
       img.decoding = "async";
-      timerDemoCardEl.appendChild(img);
-      timerDemoCaptionEl.textContent = illustration.caption
+      cardEl.appendChild(img);
+      captionEl.textContent = illustration.caption
         ? `圖解重點：${illustration.caption}`
         : `目前動作：${guideName}`;
+    }
+
+    function renderTimerDemo(guideName) {
+      const nextKey = guideName || "__empty__";
+      if (nextKey === currentDemoKey) return;
+      currentDemoKey = nextKey;
+      renderDemoInto(timerDemoCardEl, timerDemoCaptionEl, guideName, "timer-demo-empty");
+      renderDemoInto(overlayDemoCardEl, overlayDemoCaptionEl, guideName, "timer-overlay-demo-empty");
     }
 
     function showPage(page) {
@@ -1718,6 +1918,10 @@
       mobilePauseResumeBtn.disabled = !enabled;
       mobileResetTimerBtn.disabled = !enabled;
       mobilePauseResumeBtn.textContent = paused ? "繼續" : "暫停";
+      overlayPauseResumeBtn.disabled = !enabled;
+      overlaySkipStageBtn.disabled = !enabled;
+      overlayResetTimerBtn.disabled = !enabled;
+      overlayPauseResumeBtn.textContent = paused ? "繼續" : "暫停";
     }
 
     function updateDisplay() {
@@ -1727,31 +1931,44 @@
         clockEl.textContent = "00:00";
         progressEl.style.width = "0%";
         renderTimerDemo("");
+        overlayTimerNameEl.textContent = "尚未開始";
+        overlayTimerStageEl.textContent = "按下課表中的「啟動計時」後，會在這裡顯示目前動作。";
+        overlayClockEl.textContent = "00:00";
+        overlayProgressEl.style.width = "0%";
         mobileTimerNameEl.textContent = "尚未開始";
         mobileTimerClockEl.textContent = "00:00";
         mobileTimerDockEl.classList.remove("visible");
         document.body.classList.remove("dock-visible");
+        setOverlayVisible(false);
         setButtons(false);
         return;
       }
 
       timerNameEl.textContent = state.name;
+      overlayTimerNameEl.textContent = state.name;
       renderTimerDemo(state.guideName);
       if (state.phase === "prep") {
         timerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組｜預備動作`;
+        overlayTimerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組｜預備動作`;
       } else if (state.phase === "work") {
         timerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組｜訓練中`;
+        overlayTimerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組｜訓練中`;
       } else {
         timerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組完成｜休息中`;
+        overlayTimerStageEl.textContent = `第 ${state.currentSet}/${state.totalSets} 組完成｜休息中`;
       }
       clockEl.textContent = formatTime(state.remaining);
+      overlayClockEl.textContent = formatTime(state.remaining);
       mobileTimerNameEl.textContent = state.name;
       mobileTimerClockEl.textContent = formatTime(state.remaining);
-      mobileTimerDockEl.classList.add("visible");
+      mobileTimerDockEl.classList.toggle("visible", !overlayVisible);
       document.body.classList.add("dock-visible");
 
       const pct = 100 * (1 - state.remaining / state.phaseDuration);
       progressEl.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+      overlayProgressEl.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+      timerOverlayEl.classList.toggle("visible", overlayVisible);
+      document.body.classList.toggle("modal-open", overlayVisible);
       setButtons(true);
     }
 
@@ -1789,6 +2006,7 @@
       progressEl.style.width = "100%";
       mobileTimerDockEl.classList.remove("visible");
       document.body.classList.remove("dock-visible");
+      setOverlayVisible(false);
       setButtons(false);
     }
 
@@ -1832,6 +2050,7 @@
     function startTimer(name, seconds, sets, prepSeconds, restSeconds, guideName) {
       stopTimer(false);
       primeAudio();
+      setOverlayVisible(true);
 
       const workSeconds = Math.max(5, Number(seconds) || 30);
       const totalSets = Math.max(1, Number(sets) || 1);
@@ -1913,6 +2132,29 @@
 
     mobileResetTimerBtn.addEventListener("click", () => {
       stopTimer(true);
+    });
+
+    overlayPauseResumeBtn.addEventListener("click", () => {
+      togglePause();
+    });
+
+    overlaySkipStageBtn.addEventListener("click", () => {
+      if (!state) return;
+      advanceStage();
+    });
+
+    overlayResetTimerBtn.addEventListener("click", () => {
+      stopTimer(true);
+    });
+
+    overlayMinimizeBtn.addEventListener("click", () => {
+      setOverlayVisible(false);
+      updateDisplay();
+    });
+
+    overlayMinimizeBottomBtn.addEventListener("click", () => {
+      setOverlayVisible(false);
+      updateDisplay();
     });
 
     updateDisplay();
